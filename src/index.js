@@ -4,12 +4,13 @@ import { StatusBar } from 'react-native';
 
 // import './config/ReactotronConfig';
 import Routes from './routes';
+import Initial from './pages/Initial';
 
-export default function App() {  
+export default function App() {
   return (
-    <>      
+    <>
       <StatusBar barStyle="light-content" backgroundColor="#303644" />
-      <Routes />
+      <Initial />
     </>
   );
 }

@@ -11,7 +11,13 @@ export default function Initial() {
 
   useEffect(() => {
     debugger;
-    const citiesJson = citiesList.map((cityJson)=> { return {id : cityJson.id, name: cityJson.name, country: cityJson.country}});    
+    const citiesJson = citiesList.map((cityJson) => {
+      return {
+        id: cityJson.id,
+        name: cityJson.name,
+        country: cityJson.country,
+      };
+    });
     setCities(citiesJson);
   }, []);
 
@@ -20,6 +26,17 @@ export default function Initial() {
       setCity(item.name);
     });
   }
+
+  const Item = (city) => {
+    return (
+      <TouchableOpacity
+        // style={styles.button}
+        onPress={() => handleGetWeather(city.name)}
+      >
+        <Text style={{ fontSize: 15, color: '#000' }}>{city.name}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <Container>
@@ -33,24 +50,12 @@ export default function Initial() {
           <IconSearch backgroundColor="#333" name="location-on" />
         </InputCity>
       </Form>
-      {/* <FlatList
+      <Text style={{ fontSize: 20 }}>Cities</Text>
+      <FlatList
         data={cities}
-        keyExtractor={(item) => {
-          return item.id;
-        }}
-        renderItem={({ item: city }) => (
-          <TouchableOpacity
-            // style={styles.button}
-            onPress={() => handleGetWeather(city.name)}
-          >
-            <Text 
-              // style={styles.buttonTextLike}
-            >
-              {city.name}
-            </Text>
-          </TouchableOpacity>
-        )}
-      /> */}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item: city }) => <Item {...city} />}
+      />
     </Container>
   );
 }
